@@ -1,11 +1,12 @@
 import Head from 'next/head'
 import Layout, { siteTitle } from '../components/layout'
-import utilStyles from '../styles/utils.module.css'
+import utilStyles from '../styles/utils.module.sass'
 import { getSortedPostsData } from '../lib/posts'
 import Link from 'next/link'
 import Date from '../components/date'
+import { GetStaticProps } from 'next'
 
-export const getStaticProps = async () => {
+export const getStaticProps: GetStaticProps = async () => {
 	const allPostsData = getSortedPostsData()
 	return {
 		props: {
@@ -14,20 +15,25 @@ export const getStaticProps = async () => {
 	}
 }
 
-const Home = ({ allPostsData }) => (
+interface HomeProps {
+	allPostsData: {
+		date: string
+		title: string
+		id: string
+	}[]
+}
+
+const Home = ({ allPostsData }: HomeProps) => (
 	<Layout home>
 		<Head>
 			<title>{siteTitle}</title>
 		</Head>
 		<section className={utilStyles.headingMd}>
-			<p>Boom! Chaka-laka! yeah, it's greetings guys=)</p>
-			<p>
-				(This is a sample website - you’ll be building a site like this on{' '}
-				<a href="https://nextjs.org/learn">our Next.js tutorial</a>.)
-			</p>
+			<p>Вы каким-то чудом попали на бло(х) веб-разработчика Михаила из города Зажопинск (Рыбницкий район)</p>
+			<p>(Этот сайтец был сделан мной пока проходил <a href="https://nextjs.org/learn">уроки по Next.js</a>.)</p>
 		</section>
 		<section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
-			<h2 className={utilStyles.headingLg}>Blog</h2>
+			<h2 className={utilStyles.headingLg}>Блог</h2>
 			<ul className={utilStyles.list}>
 				{allPostsData.map(({ id, date, title }) => (
 					<li className={utilStyles.listItem} key={id}>
