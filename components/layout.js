@@ -1,19 +1,13 @@
-import React from 'react'
 import Head from 'next/head'
 import Image from 'next/image'
-import styles from './layout.module.sass'
-import utilStyles from '../styles/utils.module.sass'
+import styles from './layout.module.css'
+import utilStyles from '../styles/utils.module.css'
 import Link from 'next/link'
 
-const name = 'Миша (Kalebra)'
-export const siteTitle = 'Блог не юного веб-разработчика'
+const name = 'Mike'
+export const siteTitle = 'Next.js Sample Website'
 
-interface LayoutProps {
-	children: React.ReactNode
-	home?: boolean
-}
-
-const Layout = ({ children, home }: LayoutProps) => (
+const Layout = ({ children, home }) => (
 	<div className={styles.container}>
 		<Head>
 			<link rel="icon" href="/favicon.ico" />
@@ -69,7 +63,7 @@ const Layout = ({ children, home }: LayoutProps) => (
 		{!home && (
 			<div className={styles.backToHome}>
 				<Link href="/">
-					<a>← На главную</a>
+					<a>← Back to home</a>
 				</Link>
 			</div>
 		)}
